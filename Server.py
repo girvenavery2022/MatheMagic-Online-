@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6980
+SERVER_PORT = 6981
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -27,7 +27,6 @@ class Server:
             self.parse_command()
 
     def parse_command(self):
-        print(self.client_message)
         if re.search('LOGIN', self.client_message):
             self.login()
         elif re.search('SOLVE', self.client_message):
@@ -46,12 +45,14 @@ class Server:
                 result = re.search(line.strip(), self.client_message)
                 if result:
                     self.found = 'True'
-                    self.login_info = result
+                    self.login_info = self.client_message
                 line = file_descriptor.readline()
         self.client_socket.send(bytes(self.found, 'utf-8'))
 
+    def solve(self):
+        print(self.login_info)
+
     def logout(self):
-        print('HERE')
         self.login_info = ''
         self.client_socket.send(bytes('200 OK', 'utf-8'))
 

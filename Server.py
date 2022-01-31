@@ -12,6 +12,7 @@ class Server:
     file = ''
     found = 'False'
     client_socket = ''
+    error_message = '301 message format error'
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def __init__(self):
@@ -36,7 +37,7 @@ class Server:
         elif re.search('LOGOUT', self.client_message):
             self.logout()
         else:
-            self.client_socket.send(bytes('301 message format error', 'utf-8'))
+            self.client_socket.send(bytes(self.error_message, 'utf-8'))
 
     def login(self):
         with open('logins.txt', 'r') as file_descriptor:

@@ -26,7 +26,7 @@ class Client:
                 else:
                     print('FAILURE: Please provide correct username and password.Try again.')
             else:
-                print('200 OK')
+                print(self.server_message)
 
 
 client = Client()

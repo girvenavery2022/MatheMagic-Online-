@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6981
+SERVER_PORT = 6978
 NUM_BYTES = 1024
 
 
@@ -12,6 +12,10 @@ class Client:
     def __init__(self):
         pass
 
+    # Function that asks the user for a command
+    # to send to the server and waits for a response
+    # back. As long as the server doesn't echo back
+    # 200 OK, it continues to ask, send and listen.
     def command(self):
         while self.server_message != '200 OK':
             client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

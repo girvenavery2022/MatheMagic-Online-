@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6978
+SERVER_PORT = 6972
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -72,19 +72,34 @@ class Server:
             user_name = user_name[1]
             user_name += '_solutions.tx'
             res = [int(i) for i in self.client_message.split() if i.isdigit()]  # find the numbers in the string
-            if re.search('-c', self.client_message):
+            if re.search('-c', self.client_message) and len(res) > 0:
                 circumference, area = self.circle(res)
-                self.client_socket.send(bytes(('Circle’s circumference is ' + str("%.2f" % circumference) +
-                                               ' and area is ' + str("%.2f" % area)), 'utf-8'))
-
-            elif re.search('-r', self.client_message):
+                message = 'Circle’s circumference is ' + str("%.2f" % circumference) + ' and ' \
+                                                                                       'area is ' + str("%.2f" % area)
+            elif re.search('-r', self.client_message) and len(res) > 0:
                 perimeter, area = self.rectangle(res)
-                self.client_socket.send(bytes(('Rectangle’s perimeter is ' + str("%.2f" % perimeter) +
-                                               ' and area is ' + str("%.2f" % area)), 'utf-8'))
+                message = 'Rectangle’s perimeter is ' + str("%.2f" % perimeter) + ' and ' \
+                                                                                  'area is ' + str("%.2f" % area)
             else:
-                print('I am not a shape lololol')
+                message = 'Error: No sides or radius'
+            self.client_socket.send(bytes(message, 'utf-8'))
+            self.write_to_file(user_name, message)
         else:
             self.client_socket.send(bytes(self.not_logged_in, 'utf-8'))
+
+    # Function that implements the logout command
+    # it allows the user to terminate the client
+    # while keeping the server running
+    def logout(self):
+        self.login_info = ''
+        self.client_socket.send(bytes('200 OK', 'utf-8'))
+
+    # Function that implements the shutdown command
+    # it allows the user to terminate the client and
+    # the Server
+    def shutdown(self):
+        self.client_socket.send(bytes('200 OK', 'utf-8'))
+        self.server_socket.shutdown(socket.SHUT_RDWR)
 
     # Helper function to compute the circumference
     # and the area of a circle
@@ -101,19 +116,12 @@ class Server:
         area = sides[0] * sides[0]
         return perimeter, area
 
-    # Function that implements the logout command
-    # it allows the user to terminate the client
-    # while keeping the server running
-    def logout(self):
-        self.login_info = ''
-        self.client_socket.send(bytes('200 OK', 'utf-8'))
-
-    # Function that implements the shutdown command
-    # it allows the user to terminate the client and
-    # the Server
-    def shutdown(self):
-        self.client_socket.send(bytes('200 OK', 'utf-8'))
-        self.server_socket.shutdown(socket.SHUT_RDWR)
+    # Helper function to write the solution to
+    # a file with respect to who is signed in
+    def write_to_file(self, file, message):
+        f = open(file, "a")
+        f.write(message + "\n")
+        f.close()
 
 
 server = Server()

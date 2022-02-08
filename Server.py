@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6972
+SERVER_PORT = 6975
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -10,6 +10,7 @@ class Server:
     login_info = ''
     client_message = ''
     file = ''
+    user_name = ''
     found = 'False'
     client_socket = ''
     error_message = '301 message format error'
@@ -43,6 +44,8 @@ class Server:
             self.shutdown()
         elif re.search('LOGOUT', self.client_message):
             self.logout()
+        elif re.search('LIST', self.client_message):
+            self.list()
         else:
             self.client_socket.send(bytes(self.error_message, 'utf-8'))
 
@@ -58,6 +61,7 @@ class Server:
                     self.found = 'True'
                     self.login_info = self.client_message
                 line = file_descriptor.readline()
+        self.create_file()
         self.client_socket.send(bytes(self.found, 'utf-8'))
 
     # Function the implements the solve command
@@ -68,9 +72,6 @@ class Server:
     # writes the computation
     def solve(self):
         if self.login_info != '':  # make sure the user is logged in
-            user_name = self.login_info.split()
-            user_name = user_name[1]
-            user_name += '_solutions.tx'
             res = [int(i) for i in self.client_message.split() if i.isdigit()]  # find the numbers in the string
             if re.search('-c', self.client_message) and len(res) > 0:
                 circumference, area = self.circle(res)
@@ -83,9 +84,18 @@ class Server:
             else:
                 message = 'Error: No sides or radius'
             self.client_socket.send(bytes(message, 'utf-8'))
-            self.write_to_file(user_name, message)
+            self.write_to_file(message)
         else:
             self.client_socket.send(bytes(self.not_logged_in, 'utf-8'))
+
+    # Function that implements the list command
+    # it allows the user to view its solved commands
+    # and the root to view everybody's
+    def list(self):
+        if self.login_info != '':
+            f = open(self.user_name, 'r')
+            content = f.read()
+            self.client_socket.send(bytes(content, 'utf-8'))
 
     # Function that implements the logout command
     # it allows the user to terminate the client
@@ -116,10 +126,17 @@ class Server:
         area = sides[0] * sides[0]
         return perimeter, area
 
+    # Helper function to create a file for the
+    # user based of off the username
+    def create_file(self):
+        name = self.login_info.split()
+        self.user_name = name[1]
+        self.user_name += '_solutions.tx'
+
     # Helper function to write the solution to
     # a file with respect to who is signed in
-    def write_to_file(self, file, message):
-        f = open(file, "a")
+    def write_to_file(self, message):
+        f = open(self.user_name, "a")
         f.write(message + "\n")
         f.close()
 

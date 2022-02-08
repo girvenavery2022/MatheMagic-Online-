@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6975
+SERVER_PORT = 6977
 NUM_BYTES = 1024
 
 

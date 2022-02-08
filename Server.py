@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6975
+SERVER_PORT = 6977
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -11,6 +11,7 @@ class Server:
     client_message = ''
     file = ''
     user_name = ''
+    user_file = ''
     found = 'False'
     client_socket = ''
     error_message = '301 message format error'
@@ -93,9 +94,12 @@ class Server:
     # and the root to view everybody's
     def list(self):
         if self.login_info != '':
-            f = open(self.user_name, 'r')
-            content = f.read()
-            self.client_socket.send(bytes(content, 'utf-8'))
+            if re.search('-all', self.client_message) and self.user_name != 'root':
+                self.client_socket.send(bytes('Error: not login in as root', 'utf-8'))
+            else:
+                f = open(self.user_file, 'r')
+                content = f.read()
+                self.client_socket.send(bytes(content, 'utf-8'))
 
     # Function that implements the logout command
     # it allows the user to terminate the client
@@ -113,16 +117,16 @@ class Server:
 
     # Helper function to compute the circumference
     # and the area of a circle
-    def circle(self, radius) -> float:
-        circumference = 2*3.14*radius[0]
-        area = 3.14*radius[0]**2
+    def circle(self, radius):
+        circumference = 2 * 3.14 * radius[0]
+        area = 3.14 * radius[0] ** 2
         return circumference, area
 
     # Helper function to computer the perimeter
-    # and area of a rectangle if the use inputs 2
+    # and area of a rectangle if the user inputs 2
     # sides, else computes based on a square
-    def rectangle(self, sides) -> float:
-        perimeter = 2*(sides[0] + sides[0])
+    def rectangle(self, sides):
+        perimeter = 2 * (sides[0] + sides[0])
         area = sides[0] * sides[0]
         return perimeter, area
 
@@ -131,14 +135,16 @@ class Server:
     def create_file(self):
         name = self.login_info.split()
         self.user_name = name[1]
-        self.user_name += '_solutions.tx'
+        self.user_file = self.user_name + '_solutions.tx'
 
     # Helper function to write the solution to
     # a file with respect to who is signed in
     def write_to_file(self, message):
-        f = open(self.user_name, "a")
-        f.write(message + "\n")
-        f.close()
+        if message == '':
+            message = self.user_name
+        user = open(self.user_file, "a")
+        user.write(message + "\n")
+        user.close()
 
 
 server = Server()

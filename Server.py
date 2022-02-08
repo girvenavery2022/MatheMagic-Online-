@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6977
+SERVER_PORT = 6985
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -61,8 +61,8 @@ class Server:
                 if result:
                     self.found = 'True'
                     self.login_info = self.client_message
+                    self.create_file()
                 line = file_descriptor.readline()
-        self.create_file()
         self.client_socket.send(bytes(self.found, 'utf-8'))
 
     # Function the implements the solve command
@@ -99,6 +99,9 @@ class Server:
             else:
                 f = open(self.user_file, 'r')
                 content = f.read()
+                if not content:
+                    content = self.user_name + '\n' + content
+                    self.write_to_file(content)
                 self.client_socket.send(bytes(content, 'utf-8'))
 
     # Function that implements the logout command
@@ -136,12 +139,12 @@ class Server:
         name = self.login_info.split()
         self.user_name = name[1]
         self.user_file = self.user_name + '_solutions.tx'
+        f = open(self.user_file, 'a')
+        f.close()
 
     # Helper function to write the solution to
     # a file with respect to who is signed in
     def write_to_file(self, message):
-        if message == '':
-            message = self.user_name
         user = open(self.user_file, "a")
         user.write(message + "\n")
         user.close()

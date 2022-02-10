@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6985
+SERVER_PORT = 6987
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -79,6 +79,8 @@ class Server:
                 message = 'Circle’s circumference is ' + str("%.2f" % circumference) + ' and ' \
                                                                                        'area is ' + str("%.2f" % area)
             elif re.search('-r', self.client_message) and len(res) > 0:
+                if len(res) == 1:
+                    res.insert(len(res), 0)
                 perimeter, area = self.rectangle(res)
                 message = 'Rectangle’s perimeter is ' + str("%.2f" % perimeter) + ' and ' \
                                                                                   'area is ' + str("%.2f" % area)

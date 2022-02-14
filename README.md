@@ -12,7 +12,7 @@ Currently, the commands implemented are:
 Running the program is the same no matter what machine you are running it on. First you have to run the server before you can run the client. Once the Server is running, you can start up the client to connect to the server, and then you are free to dish out commands to the sever!
 
 # Known bugs 
-At the moment, there is 1 bug. The bug is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else.  
+At the moment, there are 2 bugs. The first bug is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else. The second bug is if the user sends a valid solve command without a radius or any sides, it will return 'Error: No radius or sides' instead of returning 'Error: No Radius' or 'Error: no sides' depending on the command sent.
 
 # Output
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.

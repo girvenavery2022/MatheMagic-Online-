@@ -22,5 +22,6 @@ Starting with no files made to store the users solved commands and only a file t
 Now we know we can log in, lets issue four solve commands. One while signed into root, one signed into john,one signed into qiang and one in qiang
   2. SOLVE -r 7 7, SOLVE -c 10, SOLVE -r 6 , and SOLVE -ghds 5g
   ![Screenshot from 2022-02-13 20-49-26](https://user-images.githubusercontent.com/69600850/153786705-06a990fe-615f-4a31-83ad-93aa4b9b0d1c.png)  
-  ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)  
-  ![Screenshot from 2022-02-13 20-56-17](https://user-images.githubusercontent.com/69600850/153787082-98fe7a2d-b27a-4c00-ae71-7889d04a4080.png)
+  ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)   
+  ![Screenshot from 2022-02-13 20-56-17](https://user-images.githubusercontent.com/69600850/153787082-98fe7a2d-b27a-4c00-ae71-7889d04a4080.png)  
+  ![Screenshot from 2022-02-13 20-58-17](https://user-images.githubusercontent.com/69600850/153787241-607f77fc-743c-4f0f-b18f-afc770e8ac8f.png)

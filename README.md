@@ -16,6 +16,7 @@ At the moment, there are 2 bugs. The first one is the root user can run the `LIS
 
 # Output
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.
-   1. LOGIN root root22 and LOGIN sally sally33                                                                                                           ![Screenshot from 2022-02-13 20-30-44](https://user-images.githubusercontent.com/69600850/153785938-e669c8bb-5971-4e39-ae3e-b462bb53bdc6.png)
+   1. LOGIN root root22 and LOGIN sally sally33                                                                                                                     
 
 ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)
+![Screenshot from 2022-02-13 20-28-55](https://user-images.githubusercontent.com/69600850/153786140-059f540b-ba8b-41b8-abba-f16347354bd3.png)

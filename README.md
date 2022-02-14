@@ -18,7 +18,7 @@ At the moment, there are 2 bugs. The first one is the root user can run the `LIS
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.
    1. LOGIN root root22 and LOGIN sally sally33                                                                                                                  
    ![Screenshot from 2022-02-13 20-30-44](https://user-images.githubusercontent.com/69600850/153786188-81aa2233-7226-473d-b600-76732e822c8f.png)  <br>
-   ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)
+   ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)  
 Now we know we can log in, lets issue three solve commands. One while signed into root, one signed into john and one signed into qiang
   2. 
 

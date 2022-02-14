@@ -33,3 +33,5 @@ Lets take a look at running the LIST command on john and LIST -all on root and s
 Okay, let's try to logout qiang out without murdering the server  
   4. while qiang is signed in run LOGOUT  
   ![Screenshot from 2022-02-13 21-28-32](https://user-images.githubusercontent.com/69600850/153789999-6717c5ab-401a-49d2-8d87-74dcbb77015f.png)  
+  what the server shows after logging out:
+  ![Screenshot from 2022-02-13 21-32-19](https://user-images.githubusercontent.com/69600850/153790280-aee49495-5274-4153-bc7e-d49e554a671e.png)

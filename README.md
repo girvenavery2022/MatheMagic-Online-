@@ -16,9 +16,9 @@ At the moment, there is 1 bug. The bug is the root user can run the `LIST -all` 
 
 # Output
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.
-   1. LOGIN root root22 and LOGIN sally sally33                                                                                                                  
-   ![Screenshot from 2022-02-13 20-30-44](https://user-images.githubusercontent.com/69600850/153786188-81aa2233-7226-473d-b600-76732e822c8f.png)  <br>
-   ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)  
+  1. LOGIN root root22 and LOGIN sally sally33                                                                                                                  
+  ![Screenshot from 2022-02-13 20-30-44](https://user-images.githubusercontent.com/69600850/153786188-81aa2233-7226-473d-b600-76732e822c8f.png)  <br>
+  ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)  
 Now we know we can log in, lets issue four solve commands. One while signed into root, one signed into john,one signed into qiang and one in qiang
   2. SOLVE -r 7 7, SOLVE -c 10, SOLVE -r 6 , and SOLVE -ghds 5g
   ![Screenshot from 2022-02-13 20-49-26](https://user-images.githubusercontent.com/69600850/153786705-06a990fe-615f-4a31-83ad-93aa4b9b0d1c.png)  
@@ -33,5 +33,10 @@ Lets take a look at running the LIST command on john and LIST -all on root and s
 Okay, let's try to logout qiang out without murdering the server  
   4. while qiang is signed in run LOGOUT  
   ![Screenshot from 2022-02-13 21-28-32](https://user-images.githubusercontent.com/69600850/153789999-6717c5ab-401a-49d2-8d87-74dcbb77015f.png)  
-  what the server shows after logging out:
-  ![Screenshot from 2022-02-13 21-32-19](https://user-images.githubusercontent.com/69600850/153790280-aee49495-5274-4153-bc7e-d49e554a671e.png)
+  what the server shows after logging out:  
+  ![Screenshot from 2022-02-13 21-32-19](https://user-images.githubusercontent.com/69600850/153790280-aee49495-5274-4153-bc7e-d49e554a671e.png)  
+ Lastly, we have the shutdown command where the user can murder both the client and server  
+   5. while logged in as root, issue SHUTDOWN  
+   ![Screenshot from 2022-02-13 21-37-26](https://user-images.githubusercontent.com/69600850/153790753-2aa478ea-3314-4ddd-b3a0-6bf42109ac79.png)  
+   ![Screenshot from 2022-02-13 21-38-17](https://user-images.githubusercontent.com/69600850/153790795-9833ff69-19d2-4932-8a0b-63f44172760d.png)  
+

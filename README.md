@@ -22,4 +22,4 @@ Starting with no files made to store the users solved commands and only a file t
 Now we know we can log in, lets issue three solve commands. One while signed into root, one signed into john and one signed into qiang
   2. SOLVE -r 7 7  
   ![Screenshot from 2022-02-13 20-49-26](https://user-images.githubusercontent.com/69600850/153786705-06a990fe-615f-4a31-83ad-93aa4b9b0d1c.png)  
-  ![Screenshot from 2022-02-13 20-52-30](https://user-images.githubusercontent.com/69600850/153786862-79cd7bd0-366c-4ec9-a8a8-afce93152a20.png)
+  ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)

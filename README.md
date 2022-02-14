@@ -12,7 +12,7 @@ Currently, the commands implemented are:
 Running the program is the same no matter what machine you are running it on. First you have to run the server before you can run the client. Once the Server is running, you can start up the client to connect to the server, and then you are free to dish out commands to the sever!
 
 # Known bugs 
-At the moment, there is 1 bugs. The first one is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else.  
+At the moment, there is 1 bug. The bug is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else.  
 
 # Output
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.
@@ -25,8 +25,11 @@ Now we know we can log in, lets issue four solve commands. One while signed into
   ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)   
   ![Screenshot from 2022-02-13 20-56-17](https://user-images.githubusercontent.com/69600850/153787082-98fe7a2d-b27a-4c00-ae71-7889d04a4080.png)  
   ![Screenshot from 2022-02-13 20-58-17](https://user-images.githubusercontent.com/69600850/153787241-607f77fc-743c-4f0f-b18f-afc770e8ac8f.png)  
-Lets take a look at running the LIST command on john and LIST -all on root and sally  
+Lets take a look at running the LIST command on john and LIST -all on root and sally.  
   3. LIST john, LIST -all root, and LIST -all sally  
-  ![Screenshot from 2022-02-13 21-16-18](https://user-images.githubusercontent.com/69600850/153788751-d3fd9817-165f-4c1a-88eb-d61b88ccf682.png) 
-  ![Screenshot from 2022-02-13 21-19-08](https://user-images.githubusercontent.com/69600850/153788957-6a432a98-3c96-46a7-9d46-6fe4c648d5b5.png) sign bug :(  
-  ![Screenshot from 2022-02-13 21-20-28](https://user-images.githubusercontent.com/69600850/153789064-758fe37e-2e6f-4db0-acb9-3432b32261d1.png)
+  ![Screenshot from 2022-02-13 21-16-18](https://user-images.githubusercontent.com/69600850/153788751-d3fd9817-165f-4c1a-88eb-d61b88ccf682.png)  
+  ![Screenshot from 2022-02-13 21-19-08](https://user-images.githubusercontent.com/69600850/153788957-6a432a98-3c96-46a7-9d46-6fe4c648d5b5.png) sigh bug :(  
+  ![Screenshot from 2022-02-13 21-20-28](https://user-images.githubusercontent.com/69600850/153789064-758fe37e-2e6f-4db0-acb9-3432b32261d1.png)  
+Okay, let's try to logout qiang out without murdering the server
+  4. while qiang is signed in run LOGOUT 
+  ![Screenshot from 2022-02-13 21-28-32](https://user-images.githubusercontent.com/69600850/153789999-6717c5ab-401a-49d2-8d87-74dcbb77015f.png)

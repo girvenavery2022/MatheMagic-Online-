@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6987
+SERVER_PORT = 6973
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -97,7 +97,7 @@ class Server:
     def list(self):
         if self.login_info != '':
             if re.search('-all', self.client_message) and self.user_name != 'root':
-                self.client_socket.send(bytes('Error: not login in as root', 'utf-8'))
+                self.client_socket.send(bytes('Error: you are not the root user', 'utf-8'))
             else:
                 f = open(self.user_file, 'r')
                 content = f.read()

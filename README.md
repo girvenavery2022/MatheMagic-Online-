@@ -30,6 +30,6 @@ Lets take a look at running the LIST command on john and LIST -all on root and s
   ![Screenshot from 2022-02-13 21-16-18](https://user-images.githubusercontent.com/69600850/153788751-d3fd9817-165f-4c1a-88eb-d61b88ccf682.png)  
   ![Screenshot from 2022-02-13 21-19-08](https://user-images.githubusercontent.com/69600850/153788957-6a432a98-3c96-46a7-9d46-6fe4c648d5b5.png) sigh bug :(  
   ![Screenshot from 2022-02-13 21-20-28](https://user-images.githubusercontent.com/69600850/153789064-758fe37e-2e6f-4db0-acb9-3432b32261d1.png)  
-Okay, let's try to logout qiang out without murdering the server
-  4. while qiang is signed in run LOGOUT 
-  ![Screenshot from 2022-02-13 21-28-32](https://user-images.githubusercontent.com/69600850/153789999-6717c5ab-401a-49d2-8d87-74dcbb77015f.png)
+Okay, let's try to logout qiang out without murdering the server  
+  4. while qiang is signed in run LOGOUT  
+  ![Screenshot from 2022-02-13 21-28-32](https://user-images.githubusercontent.com/69600850/153789999-6717c5ab-401a-49d2-8d87-74dcbb77015f.png)  

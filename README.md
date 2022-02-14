@@ -19,7 +19,8 @@ Starting with no files made to store the users solved commands and only a file t
    1. LOGIN root root22 and LOGIN sally sally33                                                                                                                  
    ![Screenshot from 2022-02-13 20-30-44](https://user-images.githubusercontent.com/69600850/153786188-81aa2233-7226-473d-b600-76732e822c8f.png)  <br>
    ![Screenshot from 2022-02-13 20-33-32](https://user-images.githubusercontent.com/69600850/153785942-ed6fda4b-3330-4722-8663-a3d10c093236.png)  
-Now we know we can log in, lets issue three solve commands. One while signed into root, one signed into john and one signed into qiang
-  2. SOLVE -r 7 7  
+Now we know we can log in, lets issue four solve commands. One while signed into root, one signed into john,one signed into qiang and one in qiang
+  2. SOLVE -r 7 7, SOLVE -c 10, SOLVE -r 6 , and SOLVE -ghds 5g
   ![Screenshot from 2022-02-13 20-49-26](https://user-images.githubusercontent.com/69600850/153786705-06a990fe-615f-4a31-83ad-93aa4b9b0d1c.png)  
-  ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)
+  ![Screenshot from 2022-02-13 20-52-39](https://user-images.githubusercontent.com/69600850/153786909-ba9cc518-2275-42f4-9f7a-519a12a87b15.png)  
+  ![Screenshot from 2022-02-13 20-56-17](https://user-images.githubusercontent.com/69600850/153787082-98fe7a2d-b27a-4c00-ae71-7889d04a4080.png)

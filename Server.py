@@ -1,7 +1,9 @@
+# coding=utf-8
 import socket
+from _thread import *
 import re
 
-SERVER_PORT = 6978
+SERVER_PORT = 6975
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -17,6 +19,8 @@ class Server:
     error_message = '301 message format error'
     not_logged_in = 'Error: you are not signed in, Please sign in and try again'
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    threadCount = 0
+    users_loged_in = []
 
     def __init__(self):
         pass
@@ -28,9 +32,14 @@ class Server:
         self.server_socket.listen(NUM_REQUESTS_ALLOWED)
         while True:
             self.client_socket, address = self.server_socket.accept()
-            self.client_message = self.client_socket.recv(NUM_BYTES)
-            self.client_message = self.client_message.decode('utf-8')
-            self.parse_command()
+            start_new_thread(self.threaded_client, (self.client_socket,))
+            self.threadCount += 1
+
+    def threaded_client(self, connection):
+        self.client_message = connection.recv(NUM_BYTES)
+        self.client_message = self.client_message.decode('utf-8')
+        print(self.client_message)
+        self.parse_command()
 
     # Function that takes in the decoded message and
     # regex the message to find the command the user
@@ -119,6 +128,11 @@ class Server:
     def shutdown(self):
         self.client_socket.send(bytes('200 OK', 'utf-8'))
         self.server_socket.shutdown(socket.SHUT_RDWR)
+
+    # Function that implements the message command
+    # it allows the user to send a message to another
+    # user that is logged on.
+    # def message(self):
 
     # Helper function to compute the circumference
     # and the area of a circle

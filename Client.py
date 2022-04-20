@@ -1,7 +1,7 @@
 import socket
 import re
 
-SERVER_PORT = 6975
+SERVER_PORT = 6979
 NUM_BYTES = 1024
 
 
@@ -29,6 +29,7 @@ class Client:
                     print('SUCCESS')
                 else:
                     print('FAILURE: Please provide correct username and password.Try again.')
+
             else:
                 print(self.server_message)
 

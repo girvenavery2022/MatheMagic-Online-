@@ -7,12 +7,15 @@ Currently, the commands implemented are:
   4. LIST -all
   5. LOGOUT
   6. SHUTDOWN
+  7. MESSAGE
+  8. MESSAGE -all
 
 # Building and running the program 
 Running the program is the same no matter what machine you are running it on. First you have to run the server before you can run the client. Once the Server is running, you can start up the client to connect to the server, and then you are free to dish out commands to the sever!
 
 # Known bugs 
-At the moment, there are 2 bugs. The first bug is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else. The second bug is if the user sends a valid solve command without a radius or any sides, it will return 'Error: No radius or sides' instead of returning 'Error: No Radius' or 'Error: no sides' depending on the command sent.
+At the moment, there are 2 bugs. The first bug is the root user can run the `LIST -all` command, but it only outputs the solved commands the root user has sent to the sever and nobody else. The second bug is if the user sends a valid solve command without a radius or any sides, it will return 'Error: No radius or sides' instead of returning 'Error: No Radius' or 'Error: no sides' depending on the command sent. The 
+Next known bugs are even though multiple clients can connect to the server simultaneously, and the root user can only send the `MESSAGE -all` command and regular users can send `MESSAGE' command, the message actually doesn't go to the destination and the root message only goes to the root and nobody else. This is something I will fix in my free time! 
 
 # Output
 Starting with no files made to store the users solved commands and only a file to keep track of who can log in we'll go through each command looking at the output.

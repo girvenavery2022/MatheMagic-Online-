@@ -3,7 +3,7 @@ import socket
 from _thread import *
 import re
 
-SERVER_PORT = 6975
+SERVER_PORT = 6979
 NUM_BYTES = 1024
 NUM_REQUESTS_ALLOWED = 5
 
@@ -11,6 +11,7 @@ NUM_REQUESTS_ALLOWED = 5
 class Server:
     login_info = ''
     client_message = ''
+    message = ''
     file = ''
     user_name = ''
     user_file = ''
@@ -20,7 +21,9 @@ class Server:
     not_logged_in = 'Error: you are not signed in, Please sign in and try again'
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     threadCount = 0
-    users_loged_in = []
+    connectList = []
+    addressList = []
+    currentUsers = []
 
     def __init__(self):
         pass
@@ -33,12 +36,13 @@ class Server:
         while True:
             self.client_socket, address = self.server_socket.accept()
             start_new_thread(self.threaded_client, (self.client_socket,))
+            self.connectList.append(self.client_socket)
+            self.addressList.append(address)
             self.threadCount += 1
 
     def threaded_client(self, connection):
         self.client_message = connection.recv(NUM_BYTES)
         self.client_message = self.client_message.decode('utf-8')
-        print(self.client_message)
         self.parse_command()
 
     # Function that takes in the decoded message and
@@ -56,6 +60,8 @@ class Server:
             self.logout()
         elif re.search('LIST', self.client_message):
             self.list()
+        elif re.search('MESSAGE', self.client_message):
+            self.message()
         else:
             self.client_socket.send(bytes(self.error_message, 'utf-8'))
 
@@ -71,6 +77,7 @@ class Server:
                     self.found = 'True'
                     self.login_info = self.client_message
                     self.create_file()
+                    self.currentUsers.append(self.user_name)
                 line = file_descriptor.readline()
         self.client_socket.send(bytes(self.found, 'utf-8'))
 
@@ -132,7 +139,26 @@ class Server:
     # Function that implements the message command
     # it allows the user to send a message to another
     # user that is logged on.
-    # def message(self):
+    def message(self):
+        message = self.client_message[12:]
+
+        if self.threadCount == 2:
+            self.client_socket.send(bytes('Nobody else is signed in!', 'utf-8'))
+        else:
+            print("Message from Client: ", self.client_message[12:])
+            if re.search('-all', self.client_message) and not self.user_name == 'root':
+                self.client_socket.send(bytes('Root can only use -all Command!', 'utf-8'))
+
+            elif re.search('-all', self.client_message) and self.user_name == 'root':
+                for client in self.connectList:
+                    if client is not self.server_socket:
+                        client.sendall(bytes(message, 'utf-8'))
+            else:
+                name = self.login_info.split()
+                destination = name[1]
+                if destination in self.currentUsers:
+                    index = self.currentUsers.index(destination)
+                    self.connectList[index].send(bytes(message, 'utf-8'))
 
     # Helper function to compute the circumference
     # and the area of a circle
